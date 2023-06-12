@@ -1,0 +1,4 @@
+pip install pillow
+pip install pilkit
+pip install django-imagekit
+pip install django-embed-video
