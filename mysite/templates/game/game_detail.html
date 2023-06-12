@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block title %} GAME_DETAIL {% endblock title %}
+{% block content %}
+<head>
+    <script src="https://kit.fontawesome.com/0c005e78f1.js" crossorigin="anonymous"></script>
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <br>
+            <h6 style="color: #808080">모든 게임 >  {{game.genre}}</h6>
+            <h2 style="color: #F5AB00">{{game.title}}</h2>
+
+            <p style="color: #000000">좋아요 :
+            <a href="{% url 'game:like' game.id %}"></a>
+            {% if user in game.like_users.all %}
+            <a href="{% url 'game:like' game.id %}"><i class="fa-solid fa-heart" style="color: #0259ed;"></i></a>
+            {% else %}
+            <a href="{% url 'game:like' game.id %}"><i class="fa-solid fa-heart" style="color: #f01414;"></i></a>
+            {% endif %}
+            &nbsp;&nbsp;&nbsp;&nbsp; {{ game.like_users.count }} 명이 좋아합니다.</p>
+            <br>
+        </div>
+        <div class="col-md-7">
+            {% load embed_video_tags %}
+            {% video game.video '100% x 100%' %}
+        </div>
+        <div class="col-md-5">
+            <div class="tabbable" id="tabs-442371">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#tab1" data-toggle="tab" style="color: #F5AB00">개요</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1">
+                        <p>
+                            <dt>출시일</dt>
+                            <dd>{{game.release_at}}</dd>
+                            <dt>개발사</dt>
+                            <dd>{{game.developer}}</dd>
+                            <dt>장르</dt>
+                            <dd>{{game.genre}}</dd>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br>
+                <br>
+                <h4 style="color: #000000">게임 소개</h4>
+                <p style="color: #000000">
+                    {{game.info}}
+                </p>
+            </div>
+        </div>
+        <div align="left" class="col-md-12 offset-md-0">
+                <br>
+                <br>
+                <h4>댓글</h4>
+                <br>
+            </div>
+{% for comment in game.comments.all %}
+            <div class="col-md-12 offset-md-0" style="border-radius: 10px; marin-bottom: 20px; padding: 40px; background-color: #101010">
+                <div class="comment">
+                    <h5 style="color: #CDCDCD">작성자: {{ comment.comment_writer }}</h5>
+                    <div class="date" style="color: #606060">{{ comment.comment_date }}</div>
+                    <br>
+                    <p style="color: #CDCDCD">{{ comment.comment_contents }}</p>
+                    <a href="{% url 'game:comment_delete' comment.pk %}" style="font-weight: bold" class="btn btn-warning" onclick="return confirm('이 글을 삭제 하겠습니까?')">삭제</a>
+                </div>
+                {% empty %}
+                <div class="col-md-12 offset-md-0">
+                    <p style="color: #FFFFF">첫 번째 댓글을 작성해 보세요.</p>
+                </div>
+                {% endfor %}
+                <div class="col-md-12 offset-md-0"><br></div>
+                <div class="col-md-12 offset-md-0" style="border-radius: 10px; padding: 40px; background-color: #101010">
+                    <h6 style="color: #CDCDCD">새 댓글 등록</h6>
+                    <br>
+                    <form action="{% url 'game:comment_write' game.pk %}" method="POST">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" name="content" placeholder="댓글을 입력해 주세요.">
+                        <br>
+                        <input style="font-weight: bold" class="btn btn-warning" type="submit" value="등록">
+                    </form>
+                </div>
+            </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<br>
+{% if user.is_superuser %}
+<div class="row">
+    <div class="col text-center">
+        <a href="{%url 'game:game_update' game.pk %}" class="btn btn-warning" style="font-weight:bold">수정</a>&nbsp;
+        <a href="{%url 'game:game_delete' game.pk %}" class="btn btn-warning" onclick="return confirm('이 글을 삭제 하겠습니까')" style="font-weight:bold">삭제</a>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

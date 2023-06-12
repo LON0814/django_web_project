@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{%block title%} SEARCH RESULT {%endblock title%}
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse" style="background-color: #666666">
+            <div class="sidebar-sticky pt-3">
+                <ul class="nav flex-column">
+                    <table class = 'table' style="background-color: #000000; color: #ffffff">
+                        <br>
+                        <thead>
+                        <h5>게임 찾기</h5>
+                        </thead>
+                        <br>
+                        <tbody>
+                        <form class="form-inline my-2 my-md-0" method="get" action="{% url 'game:search' %}">
+                            <input class="form-control" type="text" placeholder="게임 이름, 개발사를 입력하세요" aria-label="Search" name="b" value="{{b}}">
+                            <br>
+                            {% for g in genre_list %}
+                            <div class="form-check form-check-inline">
+                                &nbsp;&nbsp;&nbsp;
+                                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" name="f", value="{{g}}">
+                                <class class="form-check-label" for="inlineCheckbox5" style="color: #000000">{{g}}</class>
+                            </div>
+                            {% endfor %}
+                            <br>
+
+                            <button type="submit" class="btn btn-warning" style="font-weight: bold">검색</button>
+                        </form>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <br>
+            <h2>검색 결과</h2>
+            <br>
+            <table class = 'table' style="color: #ffffff">
+                <thead style="background-color: #000000">
+                <tr align="center">
+                    <th scope="col">게임 이미지</th>
+                    <th scope="col">게임 이름</th>
+                    <th scope="col">개발사</th>
+                </tr>
+                </thead>
+                <tbody style="background-color: #353535">
+                {% for game in game_list %}
+                <tr align = "center">
+                    <td style="padding:5px">
+                        {% if game.thumbnail %}
+                        <img src="{{game.thumbnail.url}}" class="thumbnails">
+                        {% endif %}
+                    </td>
+                    <td style="padding:5px">
+                        <a href="{% url 'game:detail' game.pk %}" style="color: #FFC107"><br>{{game.title}}</a>
+                    </td>
+                    <td style="padding:5px; color: #CDCDCD"><br>
+                        {{game.developer}}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <br>
+            <br>
+
+            <div class="container-fluid text-center">
+                {% if is_paginated %}
+                <p>
+                    {% if has_previous_page %}
+                <a href='/game/search?b={{request.GET.b}}&f={{request.GET.f}}&price={{request.GET.price}}&page={{previous_page}}' style="color: #000000">◀ 이전 페이지</a>
+                {% endif %}
+                &nbsp;
+                {% for page in current_page_group_range %}
+                &nbsp;
+                {% if page == page_obj.number %}
+                <a style="color: #ffffff">{{page}}</a>
+                {% else %}
+                <a href="/game/search?b={{request.GET.b}}&f={{request.GET.f}}&price={{request.GET.price}}&page={{page}}" style="color: #000000">
+                    {{page}}
+                </a>
+                {% endif %}
+                &nbsp;
+                {% endfor %}
+                &nbsp;
+                {% if has_next_page %}
+                <a href="/game/search?b={{request.GET.b}}&f={{request.GET.f}}&price={{request.GET.price}}&page={{next_page}}" style="color: #000000">다음 페이지 ▶</a>
+                {% endif %}
+                </p>
+                {% endif %}
+                <br>
+                <br>
+                <br>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock content %}

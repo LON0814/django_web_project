@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+    .box {
+     background-image: url("{% static 'images/LoA.jpg' %}");
+     background-size: cover;
+     color: white;
+}
+</style>
+<div class="box">
+</div>
+<div class="container">
+  <div class="box">
+    <h1 class="text-center" style="font-weight: bold">겜스에 오신 것을 환영합니다.</h1>
+    <br>
+    <p class="text-center">겜스는 게임 리뷰 사이트입니다.</p>
+    <p class="text-center">원하는 게임의 리뷰를 확인해 보세요!</p>
+    <br>
+    <br>
+    <p class="text-center"><a class="btn btn-warning" href="http://127.0.0.1:8000/game/list/" role="button" style="font-weight: bold">자세히 알아보기</a></p>
+  </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h3 class="text-left">최고의 신작</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/Diablo4.jpg' %}" class="card-img-top" height="206"  alt="Diablo4">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">세 명의 영웅이 이 땅을 잠식하고 있는 형언 불가능한 공포와 맞서 싸울 준비를 마쳤습니다. 악의 군대와 맞서며 잊혀진 비밀을 밝혀내십시오. 세상의 운명이 당신의 손에 달려 있습니다.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/1/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                        <small class="text-muted" style="text-align: right"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/Zelda_TK.jpg' %}" class="card-img-top" height="206"  alt="Zelda_TK">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">끝없는 모험의 무대가 하늘로 넓어진다. 『젤다의 전설 브레스 오브 더 와일드』 속편이 등장 하늘에 떠 있는 섬들, 처음 보는 무기, 신기한 탈것… 도대체 하이랄에 무슨 일이 일어난 것인가? 당신만의 끝없는 모험이 ….</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/2/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                        <small class="text-muted" style="text-align: right"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/hogwarts_legacy.jpg' %}" class="card-img-top"  height="206"  alt="hogwarts_legacy">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">호그와트 레거시는 해리 포터 세계관에서 진행되는 몰입형 오픈월드 액션 RPG입니다. 그 누구도 경험하지 못한, 1800년대의 호그와트를 경험하세요. 플레이어는 마법 세계를 산산조각낼 위험이 있는 오래된 ... </p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/3/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                        <small class="text-muted" style="text-align: right"></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <h3 class="text-left">금주의 추천 게임</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/minecraft.jpg' %}" class="card-img-top"   height="206"  alt="minecraft">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">마인크래프트는 모장 AB의 설립자 마르쿠스 페르손이 만든 샌드박스 건설 게임으로 삼차원 세상에서 다양한 블록을 놓고 부수면서 여러 구조물과 작품을 만들 수 있으며, 싱글플레이어와 멀티플레이어를 ...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/13/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/lol.jpg' %}" class="card-img-top"   height="206"  alt="lol">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">리그 오브 레전드는 세계 최고의 MOBA(Multiplayer Online Battle Arena) 게임입니다. 끝없이 이어지는 실시간 전투와 협동을 통한 팀플레이, RTS와 RPG를 하나의 게임에서 동시에 즐길 수 있는 ...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/14/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm" style="background-color: #000000">
+                <img src="{% static 'images/tothemoon.jpg' %}" class="card-img-top"   height="206"  alt="tothemoon">
+                <div class="card-body">
+                    <p class="card-text" style="color: #CDCDCD">로잘린 박사와 와츠 박사는 특이한 직업을 가지고 있습니다: 사람들에게 다시 살아갈 기회를 주는 일이죠. 맨 처음부터... 하지만 그 모든 과정은 오직 환자의 뇌 속에서만 벌어집니다. 수술의 위험성 ...</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a href="http://127.0.0.1:8000/game/5/detail/" class="btn btn-warning" style="font-weight: bold">자세히 보기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+{% endblock content %}

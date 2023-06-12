@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %} GAME REGISTER {% endblock title %}
+{% block content %}
+
+<form method="post">
+  {% csrf_token %}
+
+  <form method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      {% if field.name != 'genre_choice' %}
+      <p>{{field.label}} : {{field}}</p>
+      {%else%}
+      <p>
+          {{field.label}} :
+          {% for check in form.genre_choice %}
+          {{check}}
+          {% endfor %}
+      </p>
+      {% endif %}
+      {% endfor %}
+      <p>
+          <button type = 'submit' class = 'btn btn-primary'> REGISTERATION </button>
+      </p>
+
+  </form>
+</form>
+
+{% endblock content %}
